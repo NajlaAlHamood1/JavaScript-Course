@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My One-Page Site</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #ffc0cb;
+    }
+
+    nav {
+      background-color: #111;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #ffc0cb;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      border-bottom: 1px solid #333;
+    }
+
+    img {
+      max-width: 100%;
+      height: 600px;
+      border: 3px solid #ffc0cb;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+    }
+
+    input, textarea {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ffc0cb;
+      background-color: #111;
+      color: #ffc0cb;
+    }
+
+    input[type="submit"] {
+      background-color: #ffc0cb;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #111;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border: 3px solid #ffc0cb;
+    }
+
+    /* Lightbox styles */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      display: none;
+    }
+
+    .lightbox-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 5px solid #ffc0cb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#images">Gallery</a>
+    <a href="#video">Video</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h1>Welcome to My One Page Site</h1>
+    <p>This simple one-page site showcases skills learned in the HTML and CSS course!</p>
+  </section>
+
+  <!-- Image Gallery Section -->
+  <section id="images">
+    <h2>Image Gallery</h2>
+    <img src="https://cdn.pixabay.com/photo/2019/10/29/07/26/flamingos-4586276_1280.jpg" alt="Sample Image 1" class="lightbox-image">
+    <img src="https://cdn.pixabay.com/photo/2019/10/29/07/26/flamingos-4586276_1280.jpg" alt="Sample Image 2" class="lightbox-image">
+  </section>
+
+  <!-- Video Section -->
+  <section id="video">
+    <h2>Watch My Video</h2>
+    <iframe src="https://www.youtube.com/embed/QLV_K7DVeyU" title="These Flamingos Have Sweet Dance Moves | Wild Argentina" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="#" method="post">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <input type="submit" value="Send Message">
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 My One-Page Site. All rights reserved.
+  </footer>
+
+  <!-- Lightbox HTML -->
+  <div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="Enlarged image">
+  </div>
+
+  <!-- Lightbox Script -->
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const images = document.querySelectorAll('.lightbox-image');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg) {
+        lightbox.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
